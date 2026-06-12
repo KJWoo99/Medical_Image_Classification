@@ -23,8 +23,9 @@ CT 스캔 이미지에서 폐암 여부를 3클래스로 분류.
 
 - **모델**: EfficientNet-B5 (2단계 파인튜닝)
 - **클래스**: Calculus / Caries / Discoloration / Hypodontia / Ulcers
-- **데이터**: 3,269장 (train / val / test)
+- **데이터**: 3,269장 (train / val / test 312장)
 - **특징**: 2단계 파인튜닝, WeightedRandomSampler, AMP, EarlyStopping, ReduceLROnPlateau
+- **결과**: Test Accuracy **88%** — Hypodontia F1 0.97 / Calculus F1 0.90 / Discoloration F1 0.10 (테스트 샘플 18개로 신뢰도 낮음)
 
 ### 3. 위·내시경 용종 분류 (Gastric Polyp Classification)
 
@@ -33,6 +34,7 @@ CT 스캔 이미지에서 폐암 여부를 3클래스로 분류.
 - **모델**: EfficientNet-B5 (2단계 파인튜닝)
 - **클래스**: abnormal / normal
 - **특징**: WeightedRandomSampler, AMP, EarlyStopping, ReduceLROnPlateau
+- **결과**: Test Accuracy **84%** — normal Recall 0.95 / abnormal Recall 0.67 (테스트 샘플 31개)
 
 ### 4. 피부암 분류 (Skin Cancer Classification)
 
@@ -41,7 +43,8 @@ CT 스캔 이미지에서 폐암 여부를 3클래스로 분류.
 - **모델**: EfficientNet-B5 (2단계 파인튜닝)
 - **클래스**: MEL (흑색종) / NV (모반) / BCC (기저세포암) / BKL (양성각화증) / VASC (혈관병변)
 - **데이터**: HAM10000 기반, 9,573장 (train 6,360 / val 1,922 / test 1,291)
-- **특징**: WeightedRandomSampler (NV 클래스 67% 불균형 대응), AUROC per class 평가, RandomErasing (피부 털/아티팩트 simulate)
+- **특징**: WeightedRandomSampler (NV 클래스 67% 불균형 대응), AUROC per class 평가, RandomErasing
+- **결과**: Test Accuracy **79%** — Macro AUROC **0.9403** (BCC 0.9896 / VASC 0.9957 / MEL 0.8694)
 
 ---
 
@@ -88,15 +91,21 @@ CT 스캔 이미지에서 폐암 여부를 3클래스로 분류.
 │   ├── README.md
 │   ├── 1_train.py          # EfficientNet-B5 2-phase + WeightedRandomSampler
 │   ├── 2_evaluate.py       # Classification Report + Confusion Matrix
-│   └── 3_inference.py      # 추론 시각화
+│   ├── 3_inference.py      # 추론 시각화
+│   ├── training_curves.png # 학습 Loss/Acc 곡선
+│   └── result/             # confusion_matrix.png, inference_result.png
 ├── 03_gastric_polyp/
 │   ├── README.md
 │   ├── 1_train.py          # EfficientNet-B5 + WeightedRandomSampler
 │   ├── 2_evaluate.py
-│   └── 3_inference.py
+│   ├── 3_inference.py
+│   ├── training_curves.png
+│   └── result/
 └── 04_skin_cancer/
     ├── README.md
     ├── 1_train.py          # EfficientNet-B5 + WeightedRandomSampler + RandomErasing
     ├── 2_evaluate.py       # Classification Report + AUROC per class
-    └── 3_inference.py      # Top-3 확률 시각화
+    ├── 3_inference.py      # Top-3 확률 시각화
+    ├── training_curves.png
+    └── result/             # confusion_matrix.png, inference_result.png
 ```
