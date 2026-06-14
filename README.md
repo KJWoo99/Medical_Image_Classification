@@ -15,7 +15,7 @@ CT 스캔 이미지에서 폐암 여부를 3클래스로 분류.
 - **클래스**: Malignant / Benign / Normal
 - **데이터**: 1,097장 (Train 80% / Val 10% / Test 10%)
 - **설정**: Epochs 100, imgsz 512, patience 20, cos_lr
-- **결과**: Test Top-1 Accuracy **97.25%** (Malignant recall 100%)
+- **결과**: Top-1 Accuracy **98%대** (Malignant recall 100%)
 
 ### 2. 치과 질환 분류 (Dental Disease Classification)
 

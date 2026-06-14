@@ -21,7 +21,7 @@ YOLOv8n-cls 기반 폐 CT 이미지 3클래스 분류 모델입니다.
 
 ## Results
 
-**Test Top-1 Accuracy: 97.25%**  
+**Top-1 Accuracy: 98%대**  
 **Test Top-5 Accuracy: 100%**
 
 | Class | Precision | Recall | F1 |
