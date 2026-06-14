@@ -1,4 +1,4 @@
-"""Lung Cancer Classification - Training  (YOLOv8s-cls)"""
+"""Lung Cancer Classification - Training  (YOLOv8n-cls)"""
 import os
 from ultralytics import YOLO
 import ultralytics
